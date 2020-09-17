@@ -11,11 +11,9 @@ namespace SePSX
 {
     using System;
     using OpenQA.Selenium;
-    //using OpenQA.Selenium.Android;
     using OpenQA.Selenium.Chrome;
     using OpenQA.Selenium.Firefox;
     using OpenQA.Selenium.IE;
-    //using OpenQA.Selenium.PhantomJS;
     using OpenQA.Selenium.Remote;
 
     using Commands;
@@ -26,24 +24,12 @@ namespace SePSX
     using Autofac;
     using Autofac.Builder;
 
-    //    using Autofac.Core.Registration;
-    //    using Autofac.Core.Resolving;
-
-
-    //    using Ninject;
-    //    using Ninject.Activation;
-    //    using Ninject.Components;
-    //    using Ninject.Infrastructure;
-    //    using Ninject.Injection;
-
-
     /// <summary>
     /// Description of WebDriverFactory.
     /// </summary>
     //public static class WebDriverFactory
     public static class WebDriverFactory // : IWebDriverFactory
     {
-        //public WebDriverFactory(Autofac.Module module)
         static WebDriverFactory()
         {
             try
@@ -73,7 +59,6 @@ namespace SePSX
             {
                 try
                 {
-
                     _builder = new ContainerBuilder();
 
                     _builder.RegisterModule(AutofacModule);
@@ -87,7 +72,6 @@ namespace SePSX
                 }
                 catch (Exception efgh)
                 {
-
                     Console.WriteLine(efgh.Message);
                 }
 
@@ -108,136 +92,28 @@ namespace SePSX
 
                 switch (driverType)
                 {
-                    //                    case Drivers.Chrome:
-                    //                        //SeHelper.CollectDriverProcesses(Drivers.Chrome);
-                    ////                    ChromeOptions optCh = 
-                    ////                        new ChromeOptions();
-                    //
-                    //                        ChromeOptions optCh = //OptionsFactory.GetChromeOptions();
-                    //                        // resolve ChromeOptions
-                    //                        WebDriverFactory.Container.Resolve<ChromeOptions>();
-                    //
-                    //                        // 20121003
-                    //                        //driver = new ChromeDriver(optCh);
-                    //
-                    //                        // 20121003
-                    //                        OpenQA.Selenium.Chrome.ChromeDriverService chromeService = OpenQA.Selenium.Chrome.ChromeDriverService.CreateDefaultService();
-                    //                        //cmdlet.WriteObject(cmdlet, chromeService.ServiceUrl);
-                    //                        //cmdlet.WriteObject(cmdlet, chromeService);
-                    //                        //chromeService.Start();
-                    //
-                    //                        driver = new ChromeDriver(chromeService, optCh, TimeSpan.FromSeconds(60));
-                    //
-                    //                        SeHelper.GetDriverProcess(Drivers.Chrome, driver.Title + SeHelper.DriverTitleComplementChrome);
-                    //                        break;
                     case Drivers.Firefox:
-                        //SeHelper.CollectDriverProcesses(Drivers.Firefox);
-
-                        // 20121003
-                        //FirefoxProfile ffProfile = new FirefoxProfile();
-                        //ffProfile.AcceptUntrustedCertificates = true;
-                        //ffProfile.EnableNativeEvents = true;
-                        ////driver = new FirefoxDriver();
-                        //driver = new FirefoxDriver(ffProfile);
-
-
-                        // 20121003
-                        //                            ICapabilities ffCapabilities =
-                        //                                new OpenQA.Selenium.Support.Events.WebElementEventArgs
-                        //                    ICapabilities ffCapabilities =
-                        //                        new DesiredCapabilities();
 
                         var ffCapabilities = CapabilitiesFactory.GetCapabilities();
 
-                        //_driver = new FirefoxDriver(ffCapabilities);
                         _driver = new FirefoxDriver(new FirefoxOptions());
 
 
                         SeHelper.GetDriverProcess(Drivers.Firefox, _driver.Title + SeHelper.DriverTitleComplementFirefox.Substring(3));
 
-                        //_driver.Manage().Timeouts().SetScriptTimeout(TimeSpan.FromSeconds(60));
                         _driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(60);
                         break;
-                    //                    case Drivers.InternetExplorer:
-                    //                        //OpenQA.Selenium.IE.InternetExplorerOptions optIE =
-                    //                        //    new InternetExplorerOptions();
-                    //                        //optIE.
-                    ////                    InternetExplorerOptions optIE =
-                    ////                        new InternetExplorerOptions();
-                    //
-                    //                        //InternetExplorerOptions optIE = OptionsFactory.GetIEOptions();
-                    //                        InternetExplorerOptions optIE =
-                    //                          WebDriverFactory.Container.Resolve<InternetExplorerOptions>();
-                    //
-                    //                        optIE.EnableNativeEvents = true;
-                    //                        optIE.IgnoreZoomLevel = true;
-                    //                        optIE.IntroduceInstabilityByIgnoringProtectedModeSettings = true;
-                    //
-                    //
-                    //                        //SeHelper.CollectDriverProcesses(Drivers.InternetExplorer);
-                    //
-                    //                        //string ieSubFolder = string.Empty;
-                    //                        // 20120901
-                    //                        //System.Reflection.Assembly[] assms = 
-                    //                        //    System.AppDomain.CurrentDomain.GetAssemblies();
-                    //                        //foreach (System.Reflection.Assembly assm in assms) {
-                    //                        //    if (assm.FullName.Contains("SePSX")) {
-                    //                        //        ieSubFolder = 
-                    //                        //            assm.Location.Substring(0, assm.Location.LastIndexOf('\\'));
-                    //                        //        break;
-                    //                        //    }
-                    //                        //}
-                    //
-                    //                        string ieSubFolder = System.IO.Path.GetDirectoryName(cmdlet.GetType().Assembly.Location);
-                    //
-                    //                        if (cmdlet.Architecture == InternetExplorer.x86) {
-                    //                            ieSubFolder += "\\32\\";
-                    //                        }
-                    //                        if (cmdlet.Architecture == InternetExplorer.x64) {
-                    //                            ieSubFolder += "\\64\\";
-                    //                        }
-                    //
-                    //
-                    //                        //driver = new InternetExplorerDriver(
-                    //
-                    //                        // 20121003
-                    //                        OpenQA.Selenium.DriverService ieService = OpenQA.Selenium.IE.InternetExplorerDriverService.CreateDefaultService(ieSubFolder);
-                    //
-                    //                        ieService.Start();
-                    //
-                    //
-                    //                        driver = new InternetExplorerDriver(ieService, optIE, TimeSpan.FromSeconds(10));
-                    //
-                    //                        // 20121003
-                    //                        //driver = new InternetExplorerDriver(ieSubFolder, optIE);
-                    //
-                    //                        SeHelper.GetDriverProcess(Drivers.InternetExplorer, driver.Title + SeHelper.DriverTitleComplementInternetExplorer);
-                    //                        break;
                     case Drivers.Safari:
-                        //SeHelper.CollectDriverProcesses(Drivers.Safari);
-
-                        //driver = new SafariDriver();
-                        //driver = WebDriverFactory.GetNativeDriver(driverType);
-
                         _driver = GetNativeDriver(driverType);
 
                         SeHelper.GetDriverProcess(Drivers.Safari, _driver.Title + SeHelper.DriverTitleComplementSafari);
                         break;
                     case Drivers.Html:
-                    //_driver = new RemoteWebDriver(DesiredCapabilities.HtmlUnit());
-                    //break;
                     default:
                         throw new Exception("Invalid value for Drivers");
                 }
 
-
-
-                //
-                //
-                //return (new FirefoxDriver());
                 return _driver;
-                //
-                //
 
             }
             catch (Exception ee)
@@ -259,11 +135,6 @@ namespace SePSX
         {
             try
             {
-                //            //[Inject]
-                //            [Ninject.Inject]
-                //            IWebDriver driver = null;
-
-                //            [InjectAttribute]
                 IWebDriver nativeDriver = null;
 
                 switch (driverType)
@@ -280,7 +151,6 @@ namespace SePSX
                     case Drivers.Safari:
 
                         nativeDriver = NativeDriver;
-                        //new SafariDriver();
 
                         break;
                     case Drivers.Html:
@@ -290,8 +160,6 @@ namespace SePSX
                         throw new Exception("Invalid value for Drivers");
                 }
 
-                //return driver;
-                //return NativeDriver;
                 return nativeDriver;
             }
             catch (Exception ee)
@@ -315,18 +183,6 @@ namespace SePSX
             // determine the type of dirver server
             var driverServerType = DriverServers.None;
             var ieArchitecture = InternetExplorer.X86;
-            //            Drivers driverType = Drivers.HTML;
-            //            if (true == cmdlet.CH) {
-            //                cmdlet.WriteVerbose(cmdlet, "required ChromeDriver");
-            //                driverServerType = DriverServers.chrome;
-            //                driverType = Drivers.Chrome;
-            //            }
-            //            if (true == cmdlet.IE) {
-            //                cmdlet.WriteVerbose(cmdlet, "required InternetExplorerDriver");
-            //                driverServerType = DriverServers.ie;
-            //                ieArchitecture = cmdlet.Architecture;
-            //                driverType = Drivers.InternetExplorer;
-            //            }
 
             switch (cmdlet.DriverType)
             {
@@ -359,7 +215,6 @@ namespace SePSX
 
             SeHelper.CollectDriverProcesses(cmdlet.DriverType);
 
-            // driverDirectoryPath
             if (string.IsNullOrEmpty(cmdlet.DriverDirectoryPath))
             {
 
@@ -383,8 +238,6 @@ namespace SePSX
             }
             cmdlet.WriteVerbose(cmdlet, driverDirectoryPath);
 
-            // ChromeOptions, InternetExplorerOptions
-            //            try {
             if (DriverServers.Chrome == driverServerType)
             {
 
@@ -421,7 +274,6 @@ namespace SePSX
                 }
             }
 
-            // commandTimeout
             if (null != cmdlet.Timeout && 0 != cmdlet.Timeout && Preferences.Timeout != cmdlet.Timeout)
             { // ??
 
@@ -430,11 +282,7 @@ namespace SePSX
                 cmdlet.WriteVerbose(cmdlet, "commandTimeout = " + commandTimeout.ToString());
             }
 
-            // creating the driver server service
             cmdlet.WriteVerbose(cmdlet, "creating a DriverService");
-            //            try {
-            //Autofac.NamedParameter driverDirectoryParameter =
-            //    new NamedParameter("driverPath", driverDirectoryPath);
             switch (driverServerType)
             {
                 //                case DriverServers.none:
@@ -460,9 +308,6 @@ namespace SePSX
 
             switch (driverServerType)
             {
-                //                case DriverServers.none:
-                //                    
-                //                    break;
                 case DriverServers.Chrome:
 
                     listOfParameters.Add(new NamedParameter("service", service));
@@ -472,33 +317,13 @@ namespace SePSX
                     cmdlet.WriteVerbose(cmdlet, "creating the ChromeDriver");
                     try
                     {
-                        //ChromeDriverService service1 = ChromeDriverService.CreateDefaultService();
-                        //DriverService service2 = ChromeDriverService.CreateDefaultService();
-                        //Console.WriteLine("driverServerType.ToString() = " + driverServerType.ToString());
-                        //Console.WriteLine(listOfParameters.Count.ToString());
-                        //Console.WriteLine("creating driver");
                         driver = new ChromeDriver((ChromeDriverService)service, chromeOptions, commandTimeout);
-                        //driver =
-                        //    Container.ResolveNamed<IWebDriver>(
-                        //        driverServerType.ToString(),
-                        //        listOfParameters);
-                        //Console.WriteLine("driver has been created");
                     }
                     catch (Exception eChDrv)
                     {
                         Console.WriteLine(eChDrv.Message);
                         Console.WriteLine(eChDrv.StackTrace);
                     }
-
-                    //
-                    //                    ChromeDriver drv = new ChromeDriver();
-                    //                    ChromeDriver drv = new ChromeDriver("opt");
-                    //                    ChromeDriver drv = new ChromeDriver("dir");
-                    //                    ChromeDriver drv = new ChromeDriver("dir", "opt");
-                    //                    ChromeDriver drv = new ChromeDriver("dir", "opt", "timeout");
-                    //                    ChromeDriver drv = new ChromeDriver("svc", "opt");
-                    //                    ChromeDriver drv = new ChromeDriver("svc", "opt", "timeout");
-                    //
 
                     break;
                 case DriverServers.Ie:
@@ -516,35 +341,17 @@ namespace SePSX
                     throw new Exception("Invalid value for DriverServers");
             }
 
-            // getting the process of the driver server running
             cmdlet.WriteVerbose(cmdlet, "findng out the process of the driver created");
-            //switch (driverType) {
             switch (cmdlet.DriverType)
             {
                 case Drivers.Chrome:
-                    //SeHelper.GetDriverProcess(Drivers.Chrome, driver.Title + SeHelper.DriverTitleComplementChrome);
-                    //SeHelper.GetDriverProcess(driverType, driver.Title + SeHelper.DriverTitleComplementChrome);
                     SeHelper.GetDriverProcess(cmdlet.DriverType, driver.Title + SeHelper.DriverTitleComplementChrome);
                     break;
-                //                case Drivers.Firefox:
-                //                    
-                //                    break;
                 case Drivers.InternetExplorer:
-                    //SeHelper.GetDriverProcess(Drivers.InternetExplorer, driver.Title + SeHelper.DriverTitleComplementInternetExplorer);
-                    //SeHelper.GetDriverProcess(driverType, driver.Title + SeHelper.DriverTitleComplementInternetExplorer);
                     SeHelper.GetDriverProcess(cmdlet.DriverType, driver.Title + SeHelper.DriverTitleComplementInternetExplorer);
                     break;
-                    //                case Drivers.Safari:
-                    //                    
-                    //                    break;
-                    //                case Drivers.HTML:
-                    //                    
-                    //                    break;
-                    //                default:
-                    //                    throw new Exception("Invalid value for Drivers");
             }
 
-            // return driver
             return driver;
 
         }
@@ -562,7 +369,6 @@ namespace SePSX
 
             if (!string.IsNullOrEmpty(profileDirectory))
             {
-
                 listOfParameters.Add(
                     new NamedParameter(
                         "profileDirectory",
@@ -570,7 +376,6 @@ namespace SePSX
 
                 if (deleteSourceOnClean)
                 {
-
                     listOfParameters.Add(
                         new NamedParameter(
                             "deleteSourceOnClean",
@@ -580,25 +385,20 @@ namespace SePSX
                         Container.ResolveNamed<FirefoxProfile>(
                             FirefoxProfileConstructorOptions.FfWithPathAndBool.ToString(),
                             listOfParameters);
-
                 }
                 else
                 {
-
                     profile =
                         Container.ResolveNamed<FirefoxProfile>(
                             FirefoxProfileConstructorOptions.FfWithPath.ToString(),
                             listOfParameters);
-
                 }
             }
             else
             {
-
                 profile =
                     Container.ResolveNamed<FirefoxProfile>(
                         FirefoxProfileConstructorOptions.FfBare.ToString());
-
             }
 
             return profile;
@@ -606,11 +406,7 @@ namespace SePSX
 
         public static IWebDriver GetFirefoxDriver(StartSeDriverServerCommand cmdlet)
         {
-            //
-            //
             return (new FirefoxDriver());
-            //
-            //
         }
     }
 }
