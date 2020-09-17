@@ -376,5 +376,11 @@ Console.WriteLine("<<<<<<<<<<<<<<<<<<<<<<WebElementDecorator(IWebElement realWeb
         {
             return DecoratedWebElement.FindElementsByCssSelector(cssSelector);
         }
+
+        public string GetProperty(string propertyName)
+        {
+            return DecoratedWebElement.GetProperty(propertyName);
+            //throw new NotImplementedException();
+        }
     }
 }

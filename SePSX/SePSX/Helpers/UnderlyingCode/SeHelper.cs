@@ -1269,15 +1269,18 @@ Console.WriteLine("Highlight 00000000000015");
                     switch (timeoutType) {
                         case DriverTimeoutTypes.ImplicitlyWait:
                             cmdlet.WriteVerbose(cmdlet, "ImplicitlyWaitTimeout");
-                            driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromMilliseconds(timeoutValue));
+                            //driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromMilliseconds(timeoutValue));
+                            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromMilliseconds(timeoutValue);
                             break;
                         case DriverTimeoutTypes.PageLoad:
                             cmdlet.WriteVerbose(cmdlet, "PageLoadTimeout");
-                            driver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromMilliseconds(timeoutValue));
+                            //driver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromMilliseconds(timeoutValue));
+                            driver.Manage().Timeouts().PageLoad = TimeSpan.FromMilliseconds(timeoutValue);
                             break;
                         case DriverTimeoutTypes.Script:
                             cmdlet.WriteVerbose(cmdlet, "ScriptTimeout");
-                            driver.Manage().Timeouts().SetScriptTimeout(TimeSpan.FromMilliseconds(timeoutValue));
+                            //driver.Manage().Timeouts().SetScriptTimeout(TimeSpan.FromMilliseconds(timeoutValue));
+                            driver.Manage().Timeouts().AsynchronousJavaScript = TimeSpan.FromMilliseconds(timeoutValue);
                             break;
                             //default:
                             //    throw new Exception("Invalid value for DriverTimeoutTypes");

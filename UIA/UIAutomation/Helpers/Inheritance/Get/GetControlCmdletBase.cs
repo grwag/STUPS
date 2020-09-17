@@ -35,12 +35,14 @@ namespace UIAutomation
         #endregion Constructor
         
         #region Parameters
-        [UiaParameter][Parameter(Mandatory = false,
+        [UiaParameter]
+        [Parameter(Mandatory = false,
                    Position = 0,
                    ParameterSetName = "UiaSearch")]
         public virtual string ContainsText { get; set; }
         
-        [UiaParameter][Parameter(Mandatory = false,
+        [UiaParameter]
+        [Parameter(Mandatory = false,
                    ParameterSetName = "UiaWildCard")]
         [Parameter(Mandatory = false,
                    ParameterSetName = "Win32")]
